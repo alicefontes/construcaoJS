@@ -1,38 +1,42 @@
-function getMouseCoords(e) {
-  var e = e || window.event;
-  document.getElementById('msg').innerHTML = e.clientX + ', ' + e.clientY + '<br>' + e.screenX + ', ' + e.screenY;
+
+class Quadradinho {
+  constructor() {
+    this.elem = document.createElement('div');
+    this.elem.id = 'quadradinho';
+    this.elem.style.position = 'absolute';
+    this.elem.style.margin = '0';
+    this.elem.style.padding = '10px';
+    this.elem.style.border = '1px solid red';
+    this.elem.style.backgroundColor = 'red';
+  }
+
+  move(e) {
+    var e = e || window.event;
+    this.elem.style.left  = (e.clientX - 10) + 'px';
+    this.elem.style.top = (e.clientY - 10) + 'px';
+    document.getElementById('msg').innerHTML = e.clientX + ', ' + e.clientY + '<br>' + e.screenX + ', ' + e.screenY;
+  }
 }
 
-var s = document.createElement('div');
-s.id = 'quadradinho';
 
-var followCursor = (function() {
-  s.style.position = 'absolute';
-  s.style.margin = '0';
-  s.style.padding = '10px';
-  s.style.border = '1px solid red';
-  s.style.backgroundColor = 'red';
+var currentCursor = null;
 
-  return {
-    init: function() {
-      document.body.appendChild(s);
-    },
 
-    run: function(e) {
-      var e = e || window.event;
-      s.style.left  = (e.clientX - 10) + 'px';
-      s.style.top = (e.clientY - 10) + 'px';
-      getMouseCoords(e);
-    }
-  };
-}());
+// var currentDiv = document.getElementById("div1");
+// var sqr = document.getElementById('quadradinho');
 
 function startBuilding() {
-  followCursor.init();
-  document.addEventListener("mousemove", followCursor.run, false);
-  document.getElementById('quadradinho').addEventListener("click", stopBuilding, false);
-}
+  currentCursor = new Quadradinho();
+  document.body.appendChild(currentCursor.elem);
+  var callback = currentCursor.move.bind(currentCursor)
+  document.addEventListener("mousemove", callback, false);
 
-function stopBuilding() {
-  document.removeEventListener("mousemove", followCursor.run, false);
+  function stopBuilding() {
+    document.removeEventListener("mousemove", callback, false);
+    // currentDiv.removeEventListener("mousemove", followCursor.run, false);
+  }
+
+  currentCursor.elem.addEventListener("click", stopBuilding, false);
+  // currentDiv.addEventListener("mousemove", followCursor.run, false);
+  // sqr.addEventListener("click", stopBuilding, false);
 }
