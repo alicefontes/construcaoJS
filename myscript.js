@@ -20,23 +20,19 @@ class Quadradinho {
 
 
 var currentCursor = null;
-
-
-// var currentDiv = document.getElementById("div1");
-// var sqr = document.getElementById('quadradinho');
+var currentDiv = document.getElementById("div1");
 
 function startBuilding() {
   currentCursor = new Quadradinho();
   document.body.appendChild(currentCursor.elem);
   var callback = currentCursor.move.bind(currentCursor)
-  document.addEventListener("mousemove", callback, false);
+  // document.addEventListener("mousemove", callback, false);
+  currentDiv.addEventListener("mousemove", callback, false);
 
   function stopBuilding() {
-    document.removeEventListener("mousemove", callback, false);
-    // currentDiv.removeEventListener("mousemove", followCursor.run, false);
+    // document.removeEventListener("mousemove", callback, false);
+    currentDiv.removeEventListener("mousemove", callback, false);
   }
 
   currentCursor.elem.addEventListener("click", stopBuilding, false);
-  // currentDiv.addEventListener("mousemove", followCursor.run, false);
-  // sqr.addEventListener("click", stopBuilding, false);
 }
