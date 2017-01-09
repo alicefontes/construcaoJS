@@ -1,20 +1,12 @@
-// function showCoords(event) {
-//     var x = event.screenX;
-//     var y = event.screenY;
-//     var coords = "X coords: " + x + ", Y coords: " + y
-//     document.getElementById("demo").innerHTML = coords;
-// }
-
-
 function getMouseCoords(e) {
   var e = e || window.event;
-  document.getElementById('msg').innerHTML = e.clientX + ', ' +
-           e.clientY + '<br>' + e.screenX + ', ' + e.screenY;
+  document.getElementById('msg').innerHTML = e.clientX + ', ' + e.clientY + '<br>' + e.screenX + ', ' + e.screenY;
 }
 
+var s = document.createElement('div');
+s.id = 'quadradinho';
 
 var followCursor = (function() {
-  var s = document.createElement('div');
   s.style.position = 'absolute';
   s.style.margin = '0';
   s.style.padding = '10px';
@@ -23,7 +15,6 @@ var followCursor = (function() {
 
   return {
     init: function() {
-      //não deixa o quadrado estar em 2 pontos ao mesmo tempo
       document.body.appendChild(s);
     },
 
@@ -36,8 +27,12 @@ var followCursor = (function() {
   };
 }());
 
-window.onload = function() {
+function startBuilding() {
   followCursor.init();
-  //quando o mouse se mover, executa a função
-  document.body.onmousemove = followCursor.run;
+  document.addEventListener("mousemove", followCursor.run, false);
+  document.getElementById('quadradinho').addEventListener("click", stopBuilding, false);
+}
+
+function stopBuilding() {
+  document.removeEventListener("mousemove", followCursor.run, false);
 }
