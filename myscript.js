@@ -1,23 +1,21 @@
-
 class Quadradinho {
   constructor() {
     this.elem = document.createElement('div');
     this.elem.id = 'quadradinho';
     this.elem.style.position = 'absolute';
-    this.elem.style.margin = '0';
+    // this.elem.style.margin = '0';
     this.elem.style.padding = '10px';
-    this.elem.style.border = '1px solid red';
-    this.elem.style.backgroundColor = 'red';
+    this.elem.style.border = '1px solid white';
+    this.elem.style.backgroundColor = 'white';
   }
 
   move(e) {
     var e = e || window.event;
-    this.elem.style.left  = (e.clientX - 10) + 'px';
-    this.elem.style.top = (e.clientY - 10) + 'px';
+    this.elem.style.left  = (e.clientX) + 'px';
+    this.elem.style.top = (e.clientY) + 'px';
     document.getElementById('msg').innerHTML = e.clientX + ', ' + e.clientY + '<br>' + e.screenX + ', ' + e.screenY;
   }
 }
-
 
 var currentCursor = null;
 var currentDiv = document.getElementById("div1");
@@ -25,14 +23,31 @@ var currentDiv = document.getElementById("div1");
 function startBuilding() {
   currentCursor = new Quadradinho();
   document.body.appendChild(currentCursor.elem);
-  var callback = currentCursor.move.bind(currentCursor)
-  // document.addEventListener("mousemove", callback, false);
+  var callback = currentCursor.move.bind(currentCursor);
   currentDiv.addEventListener("mousemove", callback, false);
 
   function stopBuilding() {
-    // document.removeEventListener("mousemove", callback, false);
     currentDiv.removeEventListener("mousemove", callback, false);
   }
 
   currentCursor.elem.addEventListener("click", stopBuilding, false);
 }
+
+// function startDragging() {
+//   currentCursor = new Quadradinho();
+//   document.body.appendChild(currentCursor.elem);
+//   var callback = currentCursor.move.bind(currentCursor);
+//   currentDiv.addEventListener("mousemove", callback, false);
+//
+//   function printSquares() {
+//
+//   }
+//
+//   currentDiv.addEventListener("drag", printSquares, false);
+//
+//   function stopBuilding() {
+//     currentDiv.removeEventListener("mousemove", callback, false);
+//   }
+//
+//   currentCursor.elem.addEventListener("mouseup", stopBuilding, false);
+// }
