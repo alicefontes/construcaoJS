@@ -3,7 +3,6 @@ class Quadradinho {
     this.elem = document.createElement('div');
     this.elem.id = 'quadradinho';
     this.elem.style.position = 'absolute';
-    // this.elem.style.margin = '0';
     this.elem.style.padding = '10px';
     this.elem.style.border = '1px solid white';
     this.elem.style.backgroundColor = 'white';
@@ -19,6 +18,7 @@ class Quadradinho {
 var currentCursor = null;
 var currentDiv = document.getElementById("div1");
 
+document.getElementById("div1").addEventListener("mousemove", startBuilding, false);
 
 function startBuilding() {
   currentCursor = new Quadradinho();
