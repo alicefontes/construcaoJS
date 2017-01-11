@@ -13,7 +13,7 @@ class Quadradinho {
     var e = e || window.event;
     this.elem.style.left  = (e.clientX) + 'px';
     this.elem.style.top = (e.clientY) + 'px';
-    document.getElementById('msg').innerHTML = e.clientX + ', ' + e.clientY + '<br>' + e.screenX + ', ' + e.screenY;
+    document.innerHTML = e.clientX + ', ' + e.clientY + '<br>' + e.screenX + ', ' + e.screenY;
   }
 }
 
