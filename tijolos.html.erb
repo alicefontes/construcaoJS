@@ -2,14 +2,15 @@
   <head>
     <link rel="stylesheet" type="text/css" href="application.scss" media="screen" />
   </head>
-  <body>
-    <form>
-       <input type="button" onclick="startBuilding()" value="click here to start building" class="btn">
-    </form>
+  <body onclick="startBuilding()">
+
     <!-- <form>
        <input type="button" onclick="startDragging()" value="drag" class="btn">
     </form> -->
     <div class="wall" id="div1">
+      <div class="text">
+        Click anywhere to start building
+      </div>
     </div>
     <script src="myscript.js"> </script>
   </body>
