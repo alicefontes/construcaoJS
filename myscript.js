@@ -15,25 +15,29 @@ class Quadradinho {
   }
 }
 
-function startBuilding() {
+function startBuilding(e) {
   currentCursor = new Quadradinho();
   document.body.appendChild(currentCursor.elem);
   var callback = currentCursor.move.bind(currentCursor);
   currentDiv.addEventListener("mousemove", callback, false);
 
   function stopBuilding(e) {
-    var target = e.target;
-    if(target == target2) {
+    var cx2 = e.clientX;
+    var cy2 = e.clientY;
+    if ( (cx == cx2) || (cy == cy2) ) {
       alert("You cant add it here");
     }
     else {
       currentDiv.removeEventListener("mousemove", callback, false);
-      var target2 = e.target;
+
     }
     // currentDiv.removeEventListener("mousemove", callback, false);
   }
-
   currentCursor.elem.addEventListener("click", stopBuilding, false);
+  var cx = e.clientX;
+  var cy = e.clientY;
+
+
 }
 
 var currentCursor = null;
