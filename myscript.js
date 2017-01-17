@@ -12,8 +12,8 @@ class Quadradinho {
 
   move(e) {
     var e = e || window.event;
-    this.elem.style.left  = (e.clientX -5) + 'px';
-    this.elem.style.top = (e.clientY -5) + 'px';
+    this.elem.style.left  = (e.clientX ) + 'px';
+    this.elem.style.top = (e.clientY ) + 'px';
   }
 }
 
@@ -26,20 +26,17 @@ function startBuilding(e) {
   function stopBuilding(e) {
     var cx2 = e.clientX;
     var cy2 = e.clientY;
-    if ( (cx == cx2) || (cy == cy2) ) {
+    if ( (cx == cx2-5) || (cy == cy2-5) ) {
       alert("You cant add it here");
     }
     else {
       currentDiv.removeEventListener("mousemove", callback, false);
-
     }
     // currentDiv.removeEventListener("mousemove", callback, false);
   }
   currentCursor.elem.addEventListener("click", stopBuilding, false);
   var cx = e.clientX;
   var cy = e.clientY;
-
-
 }
 
 var currentCursor = null;
