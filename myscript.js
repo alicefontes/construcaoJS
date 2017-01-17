@@ -15,23 +15,31 @@ class Quadradinho {
   }
 }
 
-var currentCursor = null;
-var currentDiv = document.getElementById("div1");
-
-document.getElementById("div1").addEventListener("mousemove", startBuilding, false);
-
 function startBuilding() {
   currentCursor = new Quadradinho();
   document.body.appendChild(currentCursor.elem);
   var callback = currentCursor.move.bind(currentCursor);
   currentDiv.addEventListener("mousemove", callback, false);
 
-  function stopBuilding() {
-    currentDiv.removeEventListener("mousemove", callback, false);
+  function stopBuilding(e) {
+    var target = e.target;
+    if(target == target2) {
+      alert("You cant add it here");
+    }
+    else {
+      currentDiv.removeEventListener("mousemove", callback, false);
+      var target2 = e.target;
+    }
+    // currentDiv.removeEventListener("mousemove", callback, false);
   }
 
   currentCursor.elem.addEventListener("click", stopBuilding, false);
 }
+
+var currentCursor = null;
+var currentDiv = document.getElementById("div1");
+
+document.getElementById("div1").addEventListener("mousemove", startBuilding, false);
 
 // function startDragging() {
 //   currentCursor = new Quadradinho();
