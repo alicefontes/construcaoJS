@@ -6,12 +6,14 @@ class Quadradinho {
     this.elem.style.padding = '10px';
     this.elem.style.border = '1px solid white';
     this.elem.style.backgroundColor = 'white';
+    // this.elem.style.left = 10 + 'px';
+    // this.elem.style.top = 10 + 'px';
   }
 
   move(e) {
     var e = e || window.event;
-    this.elem.style.left  = (e.clientX) + 'px';
-    this.elem.style.top = (e.clientY) + 'px';
+    this.elem.style.left  = (e.clientX -5) + 'px';
+    this.elem.style.top = (e.clientY -5) + 'px';
   }
 }
 
