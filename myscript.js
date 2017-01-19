@@ -2,16 +2,15 @@ class Quadradinho {
   constructor(parent) {
     this.parent = parent;
     this.elem = document.createElement('div');
-    this.elem.class = 'quadradinho';
+    this.elem.className = 'quadradinho';
     this.elem.style.position = 'absolute';
     this.elem.style.padding = '10px';
     this.elem.style.backgroundColor = 'white';
+    this.elem.style.pointerEvents = "none";
     this.move();
-    parent.appendChild(this.elem);
+    this.parent.appendChild(this.elem);
     this.boundMove = this.move.bind(this);
-    parent.addEventListener("mousemove", this.boundMove, false);
-    this.boundStopBuilding = this.stopBuilding.bind(this);
-    parent.addEventListener("click", this.boundStopBuilding);
+    this.parent.addEventListener("mousemove", this.boundMove, false);
   }
 
   move(e) {
@@ -22,43 +21,28 @@ class Quadradinho {
     }
   }
 
-  stopBuilding(e) {
-    var cx = this.elem.offsetLeft;
-    var cy = this.elem.offsetTop;
-    var cx2 = e.clientX;
-    var cy2 = e.clientY;
-    console.log(cx, cx2, cy, cy2);
-    console.log(e.target, this.elem);
-    console.log(e.target != this.elem);
-    if ( (e.target != this.elem) && (Math.abs(cx-cx2)<=10 || Math.abs(cy-cy2)<=10) ) {
-      alert("You cant add it here");
-    }
-    else {
-      this.parent.removeEventListener("mousemove", this.boundMove);
-      this.parent.removeEventListener("click", this.boundStopBuilding);
-      currentCursor = new Quadradinho(currentDiv);
+  stamp() {
+    this.parent.removeEventListener("mousemove", this.boundMove);
+    this.elem.style.pointerEvents = "inherit";
+    this.elem.addEventListener("click", this.click.bind(this), false);
+  }
+
+  click(event) {
+    alert("You can't add it here!");
+    var e = e || window.event;
+    if (e) {
+      e.stopPropagation();
     }
   }
 }
 
 var currentDiv = document.getElementById("div1");
+var otherDiv = document.getElementById("div2");
 var currentCursor = new Quadradinho(currentDiv);
 
-// function startDragging() {
-//   currentCursor = new Quadradinho();
-//   document.body.appendChild(currentCursor.elem);
-//   var callback = currentCursor.move.bind(currentCursor);
-//   currentDiv.addEventListener("mousemove", callback, false);
-//
-//   function printSquares() {
-//
-//   }
-//
-//   currentDiv.addEventListener("drag", printSquares, false);
-//
-//   function stopBuilding() {
-//     currentDiv.removeEventListener("mousemove", callback, false);
-//   }
-//
-//   currentCursor.elem.addEventListener("mouseup", stopBuilding, false);
-// }
+var criaQuadradinho = function() {
+  currentCursor.stamp();
+  currentCursor = new Quadradinho(currentDiv);
+}
+
+currentDiv.addEventListener("click", criaQuadradinho, false);
