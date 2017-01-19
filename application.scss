@@ -9,28 +9,23 @@ body { margin: 0; }
   background-color: red;
   padding: 300px 300px 300px 300px;
 }
-//
-// .btn {
-// margin: 0px 0px 0px 0px;
-// position: relative;
-// align-self: center;
-// border: none;
-// line-height: 30px;
-// padding: 8px;
-// text-align: center;
-// font-size: 20px;
-// border-radius: 10px;
-// color: white;
-// outline: none;
-// font: 100% Avenir;
-// background-color: black;
-//
-// &:hover {
-//   cursor: pointer;
-// }
-//
-// }
 
+.quadradinho {
+  background-color: white;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+}
+
+.quadradinho:before {
+  background: transparent;
+  content: "";
+  height: 50px;
+  width: 50px;
+  left: -25px;
+  position: absolute;
+  top: -25px;
+}
 
 .text {
   align-self: center;
