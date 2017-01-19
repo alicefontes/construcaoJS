@@ -14,14 +14,14 @@ body {
   padding: 300px 300px 300px 300px;
 }
 
-.quadradinho {
+.brick {
   background-color: black;
   position: absolute;
   width: 80px;
   height: 38px;
 }
 
-.quadradinho:before {
+.brick:before {
   background: transparent;
   content: "";
   height: 76px;

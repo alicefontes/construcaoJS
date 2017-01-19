@@ -1,8 +1,8 @@
-class Quadradinho {
+class Brick {
   constructor(parent) {
     this.parent = parent;
     this.elem = document.createElement('div');
-    this.elem.className = 'quadradinho';
+    this.elem.className = 'brick';
     this.elem.style.pointerEvents = "none";
     this.move();
     this.parent.appendChild(this.elem);
@@ -34,11 +34,11 @@ class Quadradinho {
 }
 
 var currentDiv = document.getElementById("div1");
-var currentCursor = new Quadradinho(currentDiv);
+var currentCursor = new Brick(currentDiv);
 
-var criaQuadradinho = function() {
+var createBrick = function() {
   currentCursor.stamp();
-  currentCursor = new Quadradinho(currentDiv);
+  currentCursor = new Brick(currentDiv);
 }
 
-currentDiv.addEventListener("click", criaQuadradinho, false);
+currentDiv.addEventListener("click", createBrick, false);
