@@ -4,8 +4,8 @@ class Brick {
     this.elem = document.createElement('div');
     this.elem.className = 'brick';
     this.elem.style.pointerEvents = "none";
-    this.move();
     this.parent.appendChild(this.elem);
+    this.move();
     this.boundMove = this.move.bind(this);
     this.parent.addEventListener("mousemove", this.boundMove, false);
   }
@@ -13,8 +13,8 @@ class Brick {
   move(e) {
     var e = e || window.event;
     if (e) {
-      this.elem.style.left  = (e.clientX) + 'px';
-      this.elem.style.top = (e.clientY) + 'px';
+      this.elem.style.left  = e.clientX + 'px';
+      this.elem.style.top = e.clientY + 'px';
     }
   }
 
@@ -26,7 +26,8 @@ class Brick {
 
   click(event) {
     alert("You can't add it here!");
-    var e = e || window.event;
+    //se nao tiver essa parte, apesar de aparecer o alerta, um quadradinho fica em cima do outro. precisa parar a propagacao do stamp
+    var e = event || window.event;
     if (e) {
       e.stopPropagation();
     }
