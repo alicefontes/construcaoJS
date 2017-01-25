@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
   $(document).mousemove(function(e){
     $(".brick").css({
