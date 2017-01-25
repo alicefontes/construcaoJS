@@ -3,15 +3,15 @@ body {
 }
 
 .wall {
-  background: url(pf.jpg);
-  background-color: black;
-  padding: 300px 300px 300px 300px;
+  // background: url(pf.jpg);
+  background-color: white;
+  padding: 300px;
 }
 
-.wall2 {
-  background-color: black;
-  padding: 300px 300px 300px 300px;
-}
+// .wall2 {
+//   background-color: black;
+//   // padding: 300px 300px 300px 300px;
+// }
 
 .brick {
   background-color: black;
@@ -28,4 +28,10 @@ body {
   left: -80px;
   position: absolute;
   top: -38px;
+}
+
+.brick2 {
+  background-color: black;
+  width: 80px;
+  height: 38px;
 }
