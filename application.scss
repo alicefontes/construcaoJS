@@ -11,7 +11,7 @@ body {
 
 .brick {
   pointer-events: none;
-  
+
   background-color: black;
   position: absolute;
   width: 80px;
@@ -19,15 +19,15 @@ body {
   z-index: 10;
 }
 
-.brick:before {
-  background: transparent;
-  content: "";
-  height: 76px;
-  width: 160px;
-  left: -80px;
-  position: absolute;
-  top: -38px;
-}
+// .brick:before {
+//   background: transparent;
+//   content: "";
+//   height: 76px;
+//   width: 160px;
+//   left: -80px;
+//   position: absolute;
+//   top: -38px;
+// }
 
 .brick2 {
   position: absolute;
@@ -35,4 +35,14 @@ body {
   width: 80px;
   height: 38px;
   z-index: 200;
+}
+
+.brick2:before {
+  background: transparent;
+  content: "";
+  height: 76px;
+  width: 160px;
+  left: -80px;
+  position: absolute;
+  top: -38px;
 }
