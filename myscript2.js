@@ -6,6 +6,8 @@ $(document).ready(function(){
     });
   });
   $(document).click(function(e){
+    if (event.target.id == "div1") {
     $(".wall").append("<div class='brick2' style='left: "+e.pageX+"px; top: "+e.pageY+"px;'></div>");
+    };
   });
 });

@@ -6,18 +6,17 @@ body {
   background: url(pf.jpg);
   background-color: white;
   padding: 300px;
+  z-index: -1;
 }
 
-// .wall2 {
-//   background-color: black;
-//   // padding: 300px 300px 300px 300px;
-// }
-
 .brick {
+  pointer-events: none;
+  
   background-color: black;
   position: absolute;
   width: 80px;
   height: 38px;
+  z-index: 10;
 }
 
 .brick:before {
@@ -35,4 +34,5 @@ body {
   background-color: black;
   width: 80px;
   height: 38px;
+  z-index: 200;
 }
