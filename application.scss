@@ -28,7 +28,7 @@ body {
 //   top: -38px;
 // }
 
-.brick2 {
+.fixedBrick {
   position: absolute;
   background-color: black;
   // width: 80px;
@@ -36,7 +36,7 @@ body {
   z-index: 200;
 }
 
-.brick2:before {
+.fixedBrick:before {
   background: transparent;
   content: "";
   height: 76px;
