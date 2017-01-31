@@ -1,6 +1,11 @@
 class Brick {
   constructor(params) {
-    this.brick = $("<div class='brick2' style='left: " + params.left + "px; top: " + params.top + "px; width:" + params.width + "px; height:" + params.height + "px;'></div>");
+    this.brick = $("<div></div>");
+    this.brick["0"].className = "brick2";
+    this.brick["0"].style.height = params.height + "px";
+    this.brick["0"].style.width = params.width + "px";
+    this.brick["0"].style.left = params.left + "px";
+    this.brick["0"].style.top = params.top + "px";
     $(".wall").append(this.brick);
   };
 };
