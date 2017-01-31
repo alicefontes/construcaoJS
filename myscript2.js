@@ -8,8 +8,8 @@ class Brick {
     this.brick["0"].style.top = params.top + "px";
   };
 
-  stamp() {
-    $(".wall").append(this.brick);
+  stamp(currentWall) {
+    currentWall.append(this.brick);
   };
 };
 
@@ -30,7 +30,8 @@ $(document).ready(function() {
         top: e.pageY
       };
       var myNewBrick = new Brick(params);
-      myNewBrick.stamp();
+      currentWall = $(".wall")
+      myNewBrick.stamp(currentWall);
     };
   });
 });
