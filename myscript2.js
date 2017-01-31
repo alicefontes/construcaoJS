@@ -2,10 +2,10 @@ class Brick {
   constructor(params) {
     this.brick = $("<div></div>");
     this.brick["0"].className = "brick2";
-    this.brick["0"].style.height = params.height + "px";
-    this.brick["0"].style.width = params.width + "px";
-    this.brick["0"].style.left = params.left + "px";
-    this.brick["0"].style.top = params.top + "px";
+    this.brick.css({height: params.height + "px"});
+    this.brick.css({width: params.width + "px"});
+    this.brick.css({left: params.left + "px"});
+    this.brick.css({top: params.top + "px"});
   };
 
   stamp(currentWall) {
@@ -30,8 +30,11 @@ $(document).ready(function() {
         top: e.pageY
       };
       var myNewBrick = new Brick(params);
-      currentWall = $(".wall")
+      currentWall = $(".wall");
       myNewBrick.stamp(currentWall);
     };
   });
 });
+
+
+//mudar o nome do tijolo so quando tiver clicando
