@@ -6,6 +6,9 @@ class Brick {
     this.brick["0"].style.width = params.width + "px";
     this.brick["0"].style.left = params.left + "px";
     this.brick["0"].style.top = params.top + "px";
+  };
+
+  stamp() {
     $(".wall").append(this.brick);
   };
 };
@@ -26,8 +29,8 @@ $(document).ready(function() {
         left: e.pageX,
         top: e.pageY
       };
-      var x = new Brick(params);
-      $(".wall").append(x);
+      var myNewBrick = new Brick(params);
+      myNewBrick.stamp();
     };
   });
 });
