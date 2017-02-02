@@ -1,5 +1,4 @@
 class BrickLayer {
-  //manter esse codigo e mudar a classe para pedreiro
   createBrick(params) {
     const brick = $("<div></div>")
 
