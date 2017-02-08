@@ -23,13 +23,13 @@ $(document).ready(function() {
     $(".brick").css({ left: e.pageX, top: e.pageY })
   })
 
-  $(document).click(function(e) {
+  $(document).click(function(event) {
     if (event.target.id == "wall") {
       var params = {
         height: 38,
         width: 80,
-        left: e.pageX,
-        top: e.pageY
+        left: event.pageX,
+        top: event.pageY
       }
 
       var currentBrickLayer = new BrickLayer()
