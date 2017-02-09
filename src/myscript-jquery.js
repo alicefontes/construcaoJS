@@ -18,12 +18,12 @@ class BrickLayer {
   }
 }
 
-$(document).ready(function() {
+function onReady() {
   $(document).mousemove(function(e) {
     $(".brick").css({ left: e.pageX, top: e.pageY })
   })
 
-  $(document).click(function(event) {
+  $("#wall").click(function(event) {
     if (event.target.id == "wall") {
       var params = {
         height: 38,
@@ -38,4 +38,6 @@ $(document).ready(function() {
       currentBrickLayer.stamp(brick, currentWall)
     }
   })
-})
+}
+
+$(document).ready(onReady)

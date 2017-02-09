@@ -1,4 +1,5 @@
 describe("TheWallTests", function() {
+
   var params = { height: 38, width: 80, left: 70, top: 70 }
   var newBrickLayer = new BrickLayer()
   var newBrick = newBrickLayer.createBrick(params)
@@ -23,11 +24,16 @@ describe("TheWallTests", function() {
   //   expect(currentWall).toContain(newBrick)
   // });
 
-  it("checks if a new brick is created when clicking on the wall", function() {
-    setFixtures('<div id="wall"></div>');
-    var spyEvent = spyOnEvent($("#wall"), 'click');
-    $("#wall").trigger("click");
-    expect('click').toHaveBeenTriggeredOn($("#wall"));
-    expect(spyEvent).toHaveBeenTriggered();
+  describe('onReady', function() {
+    beforeEach(function() {
+      setFixtures('<div id="wall" class="wall"></div>')
+      onReady()
+    });
+
+    it("checks if a new brick is created when clicking on the wall", function() {
+      spyOn(BrickLayer.prototype, 'stamp')
+      $("#wall").click()
+      expect(BrickLayer.prototype.stamp).toHaveBeenCalled()
+    });
   });
 });
