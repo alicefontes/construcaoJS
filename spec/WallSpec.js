@@ -14,7 +14,6 @@ describe("TheWallTests", function() {
       newBrick = newBrickLayer.createBrick(params)
       currentWall = $(".wall")
       newBrickLayer.stamp(newBrick, currentWall)
-      $(newBrick).css({"position": "absolute"})
     });
 
     it("checks params of the brick created", function() {
@@ -32,27 +31,13 @@ describe("TheWallTests", function() {
       expect(currentWall[0].contains(newBrick[0])).toBe(true)
     });
 
-    it("checks if a new brick is created when not clicking on another brick", function() {
-      // var spyEvent = spyOnEvent('#wall', 'click');
-      // $(".fixedBrick").css({"position": "absolute"})
-      var event = $.Event('click');
-      event.pageX = 70;
-      event.pageY = 70;
-      // event.position = "absolute";
-      $("#wall").trigger(event);
-      // $(".fixedBrick").css({"position": "absolute"})
-
-      // spyOn(BrickLayer.prototype, 'stamp')
-      var event2 = $.Event('click');
-      event2.pageX = 207;
-      event2.pageY = 207;
-
-      $("#wall").trigger(event2);
-      // $(".fixedBrick").css({"position": "absolute"})
-
-      debugger
-      // expect(BrickLayer.prototype.stamp).toHaveBeenCalled()
-      // expect('click').toHaveBeenTriggeredOn('#wall');
+    it("checks if a new brick is not created when clicking on another brick", function() {
+      spyOn(BrickLayer.prototype, 'stamp')
+      var event2 = new jQuery.Event('click');
+      event2.pageX = 77;
+      event2.pageY = 77;
+      $(document).trigger(event2);
+      expect(BrickLayer.prototype.stamp).not.toHaveBeenCalled()
     });
   });
 

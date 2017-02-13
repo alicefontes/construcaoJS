@@ -9,6 +9,8 @@ class BrickLayer {
       top: params.top + "px"
     })
 
+    brick[0].style.position = "absolute"
+
     return brick
   }
 
