@@ -25,7 +25,7 @@ function onReady() {
     $(".brick").css({ left: e.pageX, top: e.pageY })
   })
 
-  $("#wall").click(function(event) {
+  $(document).click(function(event) {
     if (event.target.id == "wall") {
       var params = {
         height: 38,

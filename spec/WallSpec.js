@@ -1,5 +1,4 @@
 describe("TheWallTests", function() {
-
   describe("when created a new brick", function() {
     var params
     var newBrickLayer
@@ -33,11 +32,14 @@ describe("TheWallTests", function() {
 
     it("checks if a new brick is not created when clicking on another brick", function() {
       spyOn(BrickLayer.prototype, 'stamp')
-      var event2 = new jQuery.Event('click');
-      event2.pageX = 77;
-      event2.pageY = 77;
-      $(document).trigger(event2);
+      newBrick.click();
       expect(BrickLayer.prototype.stamp).not.toHaveBeenCalled()
+    });
+
+    it("checks if a new brick is created when not clicking on another brick", function() {
+      spyOn(BrickLayer.prototype, 'stamp')
+      $("#wall").click();
+      expect(BrickLayer.prototype.stamp).toHaveBeenCalled()
     });
   });
 
