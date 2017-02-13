@@ -4,7 +4,6 @@ describe("TheWallTests", function() {
     var params
     var newBrickLayer
     var newBrick
-    setFixtures('<div class="wall" id="wall"></div>')
     var currentWall
 
     beforeEach(function() {
@@ -53,32 +52,34 @@ describe("TheWallTests", function() {
 
 //nao funciona desse jeito pq criei na mão
 //tem que fazer um evento de clique em cima do tijolo já existente
-  // describe('another brick already stamped', function() {
-  //   var anotherBrick
-  //
-  //   beforeEach(function() {
-  //     onReady()
-  //
-  //     var params = { height: 38, width: 80, left: 70, top: 70 }
-  //     var newBrickLayer = new BrickLayer()
-  //     var newBrick = newBrickLayer.createBrick(params)
-  //     setFixtures('<div class="wall" id="wall"></div>')
-  //     var currentWall = $(".wall")
-  //     newBrickLayer.stamp(newBrick, currentWall)
-  //
-  //     var params2 = { height: 38, width: 80 }
-  //
-  //     // document.elementFromPoint(x, y).click();
-  //     var e = new jQuery.Event("click");
-  //     e.pageX = 172;
-  //     e.pageY = 172;
-  //     var anotherBrickLayer = new BrickLayer()
-  //     anotherBrick = anotherBrickLayer.createBrick(params2)
-  //     $("#wall").trigger(e);
-  //   });
-  //
-  //   // it("checks if a new brick is not created when clicking on another brick", function() {
-  //   //   expect(anotherBrick[0].className).not.toContain("fixedBrick")
-  //   // });
-  // });
+  describe('another brick already stamped', function() {
+    var params
+    var newBrickLayer
+    var newBrick
+    var currentWall
+
+    var event
+
+    beforeEach(function() {
+      setFixtures('<div class="wall" id="wall"></div>')
+      onReady()
+      params = { height: 38, width: 80, left: 70, top: 70 }
+      newBrickLayer = new BrickLayer()
+      newBrick = newBrickLayer.createBrick(params)
+      currentWall = $(".wall")
+      newBrickLayer.stamp(newBrick, currentWall)
+    });
+
+//ainda ta errado
+    it("checks if a new brick is created when not clicking on another brick", function() {
+      // var spyEvent = spyOnEvent('#wall', 'click');
+      spyOn(BrickLayer.prototype, 'stamp')
+      event = $.Event('click');
+      event.pageX = 75;
+      event.pageY = 75;
+      $("#wall").trigger(event);
+      expect(BrickLayer.prototype.stamp).toHaveBeenCalled()
+      // expect('click').toHaveBeenTriggeredOn('#wall');
+    });
+  });
 });
