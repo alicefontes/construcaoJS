@@ -32,6 +32,7 @@ describe("TheWallTests", function() {
 
     it("checks if a new brick is not created when clicking on another brick", function() {
       spyOn(BrickLayer.prototype, 'stamp')
+      // BrickLayer.prototype.stamp = jasmine.createSpy()
       newBrick.click();
       expect(BrickLayer.prototype.stamp).not.toHaveBeenCalled()
     });
@@ -40,13 +41,6 @@ describe("TheWallTests", function() {
       spyOn(BrickLayer.prototype, 'stamp')
       $("#wall").click();
       expect(BrickLayer.prototype.stamp).toHaveBeenCalled()
-    });
-  });
-
-  describe("when called onReady", function() {
-    beforeEach(function() {
-      setFixtures('<div id="wall" class="wall"></div>')
-      onReady()
     });
 
     it("checks if a new brick is created when clicking on the wall", function() {
@@ -57,8 +51,14 @@ describe("TheWallTests", function() {
 
     it("checks if a new brick is not created when clicking off the wall", function() {
       spyOn(BrickLayer.prototype, 'stamp')
-      $("#aaa").click()
+      $("body").click()
       expect(BrickLayer.prototype.stamp).not.toHaveBeenCalled()
     });
   });
+  // describe("when called onReady", function() {
+  //   beforeEach(function() {
+  //     setFixtures('<div id="wall" class="wall"></div>')
+  //     onReady()
+  //   });
+  // });
 });
