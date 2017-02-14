@@ -1,5 +1,5 @@
 describe("TheWallTests", function() {
-  describe("when created a new brick", function() {
+  describe("when creating a new brick", function() {
     var params
     var newBrickLayer
     var newBrick
@@ -43,7 +43,7 @@ describe("TheWallTests", function() {
     });
   });
 
-  describe('when called onReady', function() {
+  describe("when called onReady", function() {
     beforeEach(function() {
       setFixtures('<div id="wall" class="wall"></div>')
       onReady()
