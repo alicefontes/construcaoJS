@@ -3,36 +3,27 @@ import logo from './logo.svg';
 import pink from './pf.jpg';
 import './App.css';
 import './Wall.css';
-import ReactCursorPosition from 'react-cursor-position';
 
-// class Brick extends Component {
-//     constructor() {
-//     super()
-//     this.className = "brick"
-//   }
-//
-//     render() {
-//     return (
-//       <div className="brick">
-//         <div className="teste">
-//         </div>
-//       </div>
-//     );
-//   }
-//
-// }
+var Brick = require('./Brick.jsx');
 
 class Wall extends Component {
   constructor(props) {
     super(props);
     this.state = {secondsElapsed: 0, x: "", y: ""};
+    //define aqui e coloca o bind p poder usar o this.nome nas funcoes
     this.handleClick = this.handleClick.bind(this);
+    this.move = this.move.bind(this);
     document.addEventListener("mousemove", this)
   }
 
-  handleClick() {
+  handleClick(e) {
     // this.setState();
-    console.log('clicou')
+    console.log(e.pageX)
+  }
+
+  move(e) {
+    // this.setState((prevState) => ({}));
+    console.log(e.clientX, e.clientY)
   }
 
   tick() {
@@ -40,14 +31,6 @@ class Wall extends Component {
       secondsElapsed: prevState.secondsElapsed + 1
     }));
   }
-  //
-  // function move(event) {
-  //   var e = event || window.event;
-  //   if (e) {
-  //     this.x = e.clientX
-  //     console.log(e.clientX)
-  //   }
-  // }
 
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
@@ -68,10 +51,10 @@ class Wall extends Component {
           Click anywhere to start building.
         </p>
         <div className="App-intro">Seconds Elapsed: {this.state.secondsElapsed}</div>
-        <div className="Wall" onClick={this.handleClick}>
+        <div className="Wall" onClick={this.handleClick} onMouseMove={this.move} >
           <img src={pink} className="pink"/>
-          <div className="Brick">
-          </div>
+          <Brick>
+          </Brick>
         </div>
       </div>
     );
