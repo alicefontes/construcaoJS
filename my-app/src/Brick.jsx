@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
 class Brick extends Component {
-  //   constructor() {
-  //   super()
-  //   this.className = "brick"
-  // }
+  constructor(props) {
+    super(props);
+  }
 
     render() {
     return (

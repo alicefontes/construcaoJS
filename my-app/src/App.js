@@ -5,11 +5,15 @@ import './App.css';
 import './Wall.css';
 
 var Brick = require('./Brick.jsx');
+var newValueOfX
+var newValueOfY
+var fixedX
+var fixedY
 
 class Wall extends Component {
   constructor(props) {
     super(props);
-    this.state = {secondsElapsed: 0, x: "", y: ""};
+    this.state = {secondsElapsed: 0, moveX: "", moveY: "", fixX: "", fixY: ""};
     //define aqui e coloca o bind p poder usar o this.nome nas funcoes
     this.handleClick = this.handleClick.bind(this);
     this.move = this.move.bind(this);
@@ -17,13 +21,17 @@ class Wall extends Component {
   }
 
   handleClick(e) {
-    // this.setState();
-    console.log(e.pageX)
+    console.log(e.clientX, e.clientY)
+    fixedX = e.clientX
+    fixedY = e.clientY
+    this.setState({fixX: fixedX, fixY: fixedY});
   }
 
   move(e) {
-    // this.setState((prevState) => ({}));
     console.log(e.clientX, e.clientY)
+    newValueOfX = e.clientX
+    newValueOfY = e.clientY
+    this.setState({moveX: newValueOfX, moveY: newValueOfY});
   }
 
   tick() {
