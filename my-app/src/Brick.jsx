@@ -5,9 +5,16 @@ class Brick extends Component {
     super(props);
   }
 
-    render() {
+  render() {
+    
+      var divStyle = {
+        color: 'white',
+        top: this.props.positionY,
+        left: this.props.positionX
+      };
+
     return (
-      <div className="Brick">
+      <div className="Brick" style={divStyle}>
       </div>
     );
   }
