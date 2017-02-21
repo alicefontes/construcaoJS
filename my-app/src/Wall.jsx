@@ -7,11 +7,10 @@ import Brick from './Brick.jsx'
 class Wall extends Component {
   constructor(props) {
     super(props)
-    this.state = { isClicked: null, moveX: "", moveY: "", fixX: "", fixY: "" }
+    this.state = { valuesX: [], valuesY: [], isClicked: null, moveX: "", moveY: "", fixX: "", fixY: "" }
     document.addEventListener("mousemove", this.move)
     document.addEventListener("click", this.handleClick)
   }
-
 
   handleClick = (e) => {
     this.setState({ fixX: e.pageX, fixY: e.pageY })
@@ -21,9 +20,11 @@ class Wall extends Component {
     console.log(timesClicked)
     const x = e.pageX
     const y = e.pageY
+    this.setState({ valuesX: this.state.valuesX.concat(x),
+                    valuesY: this.state.valuesY.concat(y) })
 
     return (
-      console.log("foi", x, y, this.state.isClicked)
+      console.log(x, y, this.state.isClicked, this.state.valuesX, this.state.valuesY)
     )
   }
 
@@ -34,13 +35,16 @@ class Wall extends Component {
   render() {
 
     let children = []
+    let varx = this.state.fixX
+    let vary = this.state.fixY
 
+//erro tá aqui
     for (var i = 0; i < this.state.isClicked; i = i+1) {
       children.push(
         <Brick
           id={i+1}
-          positionX={this.state.fixX}
-          positionY={this.state.fixY} />)
+          positionX={varx}
+          positionY={vary} />)
     }
 
     return (
@@ -49,7 +53,7 @@ class Wall extends Component {
         <Brick
           positionX={this.state.moveX}
           positionY={this.state.moveY} />
-          { children }
+        { children }
       </div>
     )
   }
