@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
-import pink from './pf.jpg'
 import './App.css'
 import './Wall.css'
-import Brick from './Brick.jsx'
 import Wall from './Wall.jsx'
 
 class App extends Component {
@@ -17,9 +15,7 @@ class App extends Component {
         </div>
         <p className="App-intro">
         </p>
-        <Wall>
-          <Brick/>
-        </Wall>
+        <Wall/>
       </div>
     )
   }
