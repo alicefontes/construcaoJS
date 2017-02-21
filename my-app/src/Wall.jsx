@@ -12,14 +12,19 @@ class Wall extends Component {
     document.addEventListener("click", this.handleClick)
   }
 
+
   handleClick = (e) => {
-    console.log("clicou")
-    console.log(e.clientX, e.clientY)
     this.setState({ fixX: e.pageX, fixY: e.pageY })
     let timesClicked = this.state.isClicked
     timesClicked++
     this.setState({isClicked: timesClicked})
     console.log(timesClicked)
+    const x = e.pageX
+    const y = e.pageY
+
+    return (
+      console.log("foi", x, y, this.state.isClicked)
+    )
   }
 
   move = (e) => {
@@ -27,13 +32,15 @@ class Wall extends Component {
   }
 
   render() {
-    let timesClicked = this.state.isClicked
-    let view
 
-    for (var i=0; i < timesClicked; i++) {
-      view = <Brick
-        positionX={this.state.fixX}
-        positionY={this.state.fixY} />
+    let children = []
+
+    for (var i = 0; i < this.state.isClicked; i = i+1) {
+      children.push(
+        <Brick
+          id={i+1}
+          positionX={this.state.fixX}
+          positionY={this.state.fixY} />)
     }
 
     return (
@@ -42,7 +49,7 @@ class Wall extends Component {
         <Brick
           positionX={this.state.moveX}
           positionY={this.state.moveY} />
-          { view }
+          { children }
       </div>
     )
   }
