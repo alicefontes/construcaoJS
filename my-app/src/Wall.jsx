@@ -3,6 +3,7 @@ import pink from './pf.jpg'
 import './App.css'
 import './Wall.css'
 import Brick from './Brick.jsx'
+import MoveBrick from './MoveBrick.jsx'
 
 class Wall extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Wall extends Component {
   }
 
   handleClick = (e) => {
+    console.log(e.target.id)
     if (e.target.id === "wall") {
       this.setState({ fixX: e.pageX, fixY: e.pageY })
       let timesClicked = this.state.isClicked
@@ -34,7 +36,6 @@ class Wall extends Component {
     for (var i = 0; i < this.state.isClicked; i = i+1) {
       children.push(
         <Brick
-          id="brick"
           positionX={this.state.valuesX[i]}
           positionY={this.state.valuesY[i]} />)
     }
@@ -42,7 +43,7 @@ class Wall extends Component {
     return (
       <div className="Wall">
         <img src={pink} className="pink" id="wall" />
-        <Brick id="brick"
+        <MoveBrick
           positionX={this.state.moveX}
           positionY={this.state.moveY} />
         { children }
