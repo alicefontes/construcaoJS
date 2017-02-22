@@ -13,12 +13,14 @@ class Wall extends Component {
   }
 
   handleClick = (e) => {
-    this.setState({ fixX: e.pageX, fixY: e.pageY })
-    let timesClicked = this.state.isClicked
-    timesClicked++
-    this.setState({isClicked: timesClicked})
-    this.setState({ valuesX: this.state.valuesX.concat(e.pageX),
-                    valuesY: this.state.valuesY.concat(e.pageY) })
+    if (e.target.id === "wall") {
+      this.setState({ fixX: e.pageX, fixY: e.pageY })
+      let timesClicked = this.state.isClicked
+      timesClicked++
+      this.setState({ isClicked: timesClicked })
+      this.setState({ valuesX: this.state.valuesX.concat(e.pageX),
+                      valuesY: this.state.valuesY.concat(e.pageY) })
+    }
   }
 
   move = (e) => {
@@ -32,15 +34,15 @@ class Wall extends Component {
     for (var i = 0; i < this.state.isClicked; i = i+1) {
       children.push(
         <Brick
-          id={i+1}
+          id="brick"
           positionX={this.state.valuesX[i]}
           positionY={this.state.valuesY[i]} />)
     }
 
     return (
       <div className="Wall">
-        <img src={pink} className="pink" />
-        <Brick
+        <img src={pink} className="pink" id="wall" />
+        <Brick id="brick"
           positionX={this.state.moveX}
           positionY={this.state.moveY} />
         { children }
