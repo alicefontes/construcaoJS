@@ -17,15 +17,8 @@ class Wall extends Component {
     let timesClicked = this.state.isClicked
     timesClicked++
     this.setState({isClicked: timesClicked})
-    console.log(timesClicked)
-    const x = e.pageX
-    const y = e.pageY
-    this.setState({ valuesX: this.state.valuesX.concat(x),
-                    valuesY: this.state.valuesY.concat(y) })
-
-    return (
-      console.log(x, y, this.state.isClicked, this.state.valuesX, this.state.valuesY)
-    )
+    this.setState({ valuesX: this.state.valuesX.concat(e.pageX),
+                    valuesY: this.state.valuesY.concat(e.pageY) })
   }
 
   move = (e) => {
@@ -35,16 +28,13 @@ class Wall extends Component {
   render() {
 
     let children = []
-    let varx = this.state.fixX
-    let vary = this.state.fixY
 
-//erro tá aqui
     for (var i = 0; i < this.state.isClicked; i = i+1) {
       children.push(
         <Brick
           id={i+1}
-          positionX={varx}
-          positionY={vary} />)
+          positionX={this.state.valuesX[i]}
+          positionY={this.state.valuesY[i]} />)
     }
 
     return (
