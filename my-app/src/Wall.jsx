@@ -9,8 +9,6 @@ class Wall extends Component {
   constructor(props) {
     super(props)
     this.state = { valuesX: [], valuesY: [], isClicked: null, moveX: "", moveY: "", fixX: "", fixY: "" }
-    document.addEventListener("mousemove", this.move)
-    document.addEventListener("click", this.handleClick)
   }
 
   handleClick = (e) => {
@@ -41,7 +39,7 @@ class Wall extends Component {
     }
 
     return (
-      <div className="Wall">
+      <div className="Wall" onClick={this.handleClick} onMouseMove={this.move}>
         <img src={pink} className="pink" id="wall" />
         <MoveBrick
           positionX={this.state.moveX}
