@@ -1,0 +1,33 @@
+.Wall {
+  background-color: black;
+  padding: 30px;
+}
+
+.MoveBrick {
+  pointer-events: none;
+  background-color: black;
+  position: absolute;
+  width: 80px;
+  height: 38px;
+}
+
+.Brick {
+  background-color: black;
+  position: absolute;
+  width: 80px;
+  height: 38px;
+}
+
+.Brick:before {
+  background: transparent;
+  content: "";
+  height: 76px;
+  width: 160px;
+  left: -80px;
+  position: absolute;
+  top: -38px;
+}
+
+.pink {
+  position: center;
+}
