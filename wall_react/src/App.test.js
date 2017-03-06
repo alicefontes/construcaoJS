@@ -92,7 +92,7 @@ describe('when clicking off the wall', () => {
     const wall = wrapper.find('.Wall')
     const event = {
       target: {
-        id: 'aaa'
+        id: 'brick'
       },
     }
 
