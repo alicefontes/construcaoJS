@@ -79,3 +79,27 @@ describe('when clicking on the wall', () => {
     expect(instance.state.fixY).toEqual("288px")
   });
 })
+
+
+describe('when clicking off the wall', () => {
+  it('dont fix the brick', () => {
+    const wrapper = mount(<Wall />);
+    const instance = wrapper.instance();
+
+    spyOn(instance, 'state')
+    wrapper.update()
+
+    const wall = wrapper.find('.Wall')
+    const event = {
+      target: {
+        id: 'aaa'
+      },
+    }
+
+    wall.props().onClick(event)
+
+    expect(instance.state.isClicked).toBe(null)
+    expect(instance.state.fixX).toEqual("")
+    expect(instance.state.fixY).toEqual("")
+  });
+})
