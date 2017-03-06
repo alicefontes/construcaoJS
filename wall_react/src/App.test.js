@@ -8,40 +8,40 @@ import renderer from 'react-test-renderer'
 import ReactTestUtils from 'react-addons-test-utils' // ES6
 import { shallow, mount, render } from 'enzyme';
 
-const renderMe = ReactTestUtils.createRenderer();
-renderMe.render(<Wall />);
-const resultWall = renderMe.getRenderOutput();
-
-const renderB = ReactTestUtils.createRenderer();
-renderB.render(<Brick />);
-const resultBrick = renderB.getRenderOutput();
-
-it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<App />, div);
+describe('rendering app without crashing', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div')
+    ReactDOM.render(<App />, div);
+  })
 })
 
-test('wall not null', () => {
-  expect(resultWall).not.toBe(null);
+describe('rendering wall', () => {
+  const renderWall = ReactTestUtils.createRenderer();
+  renderWall.render(<Wall />);
+  const resultWall = renderWall.getRenderOutput();
+
+  it('wall not null', () => {
+    expect(resultWall).not.toBe(null);
+  })
+
+  it('type of wall', () => {
+    expect(resultWall.type).toBe('div');
+  })
 })
 
-it('type of wall', () => {
-  expect(resultWall.type).toBe('div');
+describe('rendering brick', () => {
+  const renderBrick = ReactTestUtils.createRenderer();
+  renderBrick.render(<Brick />);
+  const resultBrick = renderBrick.getRenderOutput();
+
+  it('brick not null', () => {
+    expect(resultBrick).not.toBe(null);
+  })
+
+  it('type of brick', () => {
+    expect(resultBrick.type).toBe('div');
+  })
 })
-
-test('brick not null', () => {
-  expect(resultBrick).not.toBe(null);
-})
-
-it('type of brick', () => {
-  expect(resultBrick.type).toBe('div');
-})
-
-it('', () => {
-  const wrapper = shallow(<Wall />);
-  expect(wrapper.find(Wall))
-});
-
 
 describe('when clicking on the wall', () => {
   it('calls handleClick', () => {
@@ -58,6 +58,8 @@ describe('when clicking on the wall', () => {
 
   it('fix the brick', () => {
     const wrapper = mount(<Wall />);
+    const brick = mount(<Brick />);
+
     const instance = wrapper.instance();
 
     spyOn(instance, 'state')
@@ -93,7 +95,7 @@ describe('when clicking off the wall', () => {
     const event = {
       target: {
         id: 'brick'
-      },
+      }
     }
 
     wall.props().onClick(event)
