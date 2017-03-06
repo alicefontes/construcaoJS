@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import Wall from './Wall'
 import Brick from './Brick'
-import MoveBrick from './MoveBrick'
 import renderer from 'react-test-renderer'
 import ReactTestUtils from 'react-addons-test-utils' // ES6
-import { shallow, mount, render } from 'enzyme';
+import { mount, render } from 'enzyme';
 
 describe('rendering app without crashing', () => {
   it('renders without crashing', () => {
@@ -81,7 +80,6 @@ describe('when clicking on the wall', () => {
     expect(instance.state.fixY).toEqual("288px")
   });
 })
-
 
 describe('when clicking off the wall', () => {
   it('dont fix the brick', () => {
