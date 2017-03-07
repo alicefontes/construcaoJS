@@ -8,34 +8,43 @@ import MoveBrick from './MoveBrick.jsx'
 class Wall extends Component {
   constructor(props) {
     super(props)
-    this.state = { valuesX: [], valuesY: [], isClicked: null, moveX: "", moveY: "", fixX: "", fixY: "" }
-  }
-
-  handleClick = (e) => {
-    console.log(e.target.id)
-    if (e.target.id === "wall") {
-      this.setState({ fixX: e.pageX, fixY: e.pageY })
-      let timesClicked = this.state.isClicked
-      timesClicked++
-      this.setState({ isClicked: timesClicked })
-      this.setState({ valuesX: this.state.valuesX.concat(e.pageX),
-                      valuesY: this.state.valuesY.concat(e.pageY) })
+    this.state = {
+      valuesX: [],
+      valuesY: [],
+      timesClicked: null,
+      moveX: "",
+      moveY: "",
+      fixX: "",
+      fixY: ""
     }
   }
 
-  move = (e) => {
-    this.setState({ moveX: e.pageX, moveY: e.pageY })
+  handleClick = (e) => {
+    if (e.target.id === "wall") {
+      this.setState({ fixX: e.pageX, fixY: e.pageY })
+      let timesClicked = this.state.timesClicked
+      timesClicked++
+      this.setState({ timesClicked })
+      this.setState({
+        valuesX: this.state.valuesX.concat(e.pageX),
+        valuesY: this.state.valuesY.concat(e.pageY)
+      })
+    }
+  }
+
+  move = ({ pageX: moveX, pageY: moveY }) => {
+    this.setState({ moveX, moveY })
   }
 
   render() {
-
     let children = []
 
-    for (var i = 0; i < this.state.isClicked; i = i+1) {
+    for (let i = 0; i < this.state.timesClicked; i = i+1) {
       children.push(
         <Brick
           positionX={this.state.valuesX[i]}
-          positionY={this.state.valuesY[i]} />)
+          positionY={this.state.valuesY[i]} />
+      )
     }
 
     return (
